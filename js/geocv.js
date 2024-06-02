@@ -1,6 +1,6 @@
 var map = L.map('map', {
     zoomControl:true, maxZoom:28, minZoom:1
-}).fitBounds([[-37.11927464328676,-72.79423028227501],[-31.218777196526048,-65.26908754760137]]);
+}).fitBounds([[-34.00,-72.80],[-22.50,-65.30]]);
 var hash = new L.Hash(map);
 map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; ');
 var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
