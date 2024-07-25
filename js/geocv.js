@@ -135,6 +135,9 @@ function pop_Empleos_3(feature, layer) {
     var content = popup.getContent();
     var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
     popup.setContent(updatedContent);
+
+
+
 }
 
 function style_Empleos_3_0(feature) {
@@ -335,6 +338,24 @@ var layer_Empleos_3 = new L.geoJson(json_Empleos_3, {
         return L.circleMarker(latlng, style_Empleos_3_0(feature));
     },
 });
+
+// Agregar resaltado en el clic del punto
+layer_Empleos_3.on('click', function(e) {
+    // Resetear estilo de todos los puntos
+    layer_Empleos_3.eachLayer(function(layer) {
+        layer.setStyle(style_Empleos_3_0(layer.feature));
+    });
+    // Resaltar punto clickeado
+    var clickedLayer = e.layer;
+    clickedLayer.setStyle({
+        color: 'red',  // Cambiar borde a rojo
+        weight: 3      // Aumentar grosor del borde
+    });
+});
+
+
+
+
 var cluster_Empleos_3 = new L.MarkerClusterGroup({showCoverageOnHover: false,
     spiderfyDistanceMultiplier: 2});
 cluster_Empleos_3.addLayer(layer_Empleos_3);
