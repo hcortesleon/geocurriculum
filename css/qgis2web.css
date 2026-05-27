@@ -1,0 +1,124 @@
+/* Estilo general original */
+body, html { padding: 0; margin: 0; width: 100%; height: 100%; font-family: Arial, Helvetica, sans-serif; }
+#map { background-color: #ffffff; width: 100%; height: 100%; }
+.titulo { position: absolute; top: 10px; left: 120px; z-index: 999999; width: 100%; text-transform: uppercase; color: #000; }
+th { text-align: left; vertical-align: top; min-width: 75px; }
+td { min-width: 75px; }
+td img { max-height: 50vw; max-width: 50vw; }
+h3 { text-align: center; color: #555; }
+ul { list-style: none; padding: 0; }
+li { padding: 9px; border-bottom: 1px solid #ddd; }
+li:last-child { border-bottom: none; }
+p { padding: 9px; border-bottom: 1px solid #ddd; }
+.leaflet-popup-content-wrapper { background-color: #333; color: #fff; border-radius: 8px; padding: 10px; }
+.leaflet-popup-content { margin: 0; font-size: 12px; line-height: 2; text-align: left; }
+.leaflet-popup-tip { background-color: #333; }
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255, 255, 255, 0.8); box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); border-radius: 5px; }
+.info h2 { margin: 0 0 5px; color: #777; }
+.leaflet-container { background: #fff; padding-right: 10px; }
+.leaflet-popup-scrolled { width: auto !important; height: auto !important; overflow: auto; max-height: 70vw; max-width: 70vw; border-bottom: unset !important; border-top: unset !important; }
+.fa, .leaflet-container, a { color: #000000 !important; }
+.leaflet-control-zoom-in, .leaflet-control-zoom-out, .leaflet-control-locate a, .leaflet-touch .leaflet-control-geocoder-icon, .leaflet-control-search .search-button, .leaflet-control-measure { background-color: #f8f8f8 !important; border-radius: 0px !important; color: #000000 !important; }
+.abstract { font: bold 18px 'Lucida Console', Monaco, monospace; text-indent: 1px; background-color: #f8f8f8 !important; width: 30px !important; color: #000000 !important; height: 30px !important; text-align: center !important; line-height: 30px !important; }
+.abstractUncollapsed { padding: 6px 8px; font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif; background-color: #f8f8f8 !important; color: #000000 !important; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); border-radius: 5px; max-width: 40%; }
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar, .leaflet-control-search, .leaflet-control-measure { border: 3px solid rgba(255, 255, 255, .4) !important; }
+.leaflet-control-attribution a { color: #0078A8 !important; }
+.leaflet-control-scale-line { border: 2px solid #f8f8f8 !important; border-top: none !important; color: black !important; }
+.leaflet-control-search .search-button, .leaflet-container .leaflet-control-search, .leaflet-control-measure { box-shadow: none !important; }
+.leaflet-control-search .search-button { width: 30px !important; height: 30px !important; font-size: 13px !important; text-align: center !important; line-height: 30px !important; }
+.leaflet-control-measure .leaflet-control { width: 30px !important; height: 30px !important; }
+.leaflet-container .leaflet-control-search { background: none !important; }
+.leaflet-control-search .search-input { margin: 0px !important; height: 30px !important; }
+.leaflet-control-measure { background: none !important; border-radius: 4px !important; }
+.leaflet-control-measure .leaflet-control-measure-interaction { background-color: #f8f8f8 !important; }
+.leaflet-touch .leaflet-control-measure .leaflet-control-measure-toggle, .leaflet-touch .leaflet-control-measure .leaflet-control-measure-toggle:hover { width: 30px !important; height: 30px !important; border-radius: 0px !important; background-color: #f8f8f8 !important; color: #000000 !important; font-size: 13px; line-height: 30px; text-align: center; text-indent: 0%; }
+.leaflet-control-layers-toggle { background-color: #f8f8f8 !important; }
+.leaflet-overlay-pane { z-index: 550; }
+.leaflet-popup-pane { z-index: 900; }
+
+@media (max-width: 768px) { .titulo { left: 10px; width: 90%; font-size: 1.2em; } th, td { min-width: 50px; } td img { max-height: 40vw; max-width: 40vw; } .abstractUncollapsed { max-width: 90%; } }
+@media (max-width: 480px) { .titulo { left: 5px; width: 95%; font-size: 1em; } th, td { min-width: 40px; } td img { max-height: 30vw; max-width: 30vw; } .abstractUncollapsed { max-width: 95%; } }
+
+/* --- Interfaz Flotante Moderna --- */
+.ui-floating-container { position: absolute; top: 15px; right: 150px; z-index: 1000; width: 280px; font-family: 'Arial', sans-serif; }
+.ui-panel { background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); backdrop-filter: blur(4px); transition: all 0.3s ease; }
+.panel-header { font-weight: bold; font-size: 14px; margin-bottom: 10px; color: #333; text-transform: uppercase; letter-spacing: 0.5px;}
+.stats-grid { display: flex; gap: 10px; margin-bottom: 12px; }
+.stat-card { flex: 1; background: #f4f6f7; padding: 8px; border-radius: 8px; text-align: center; }
+.stat-val { display: block; font-size: 18px; font-weight: bold; color: #2b83ba; }
+.stat-lbl { font-size: 10px; color: #7f8c8d; }
+.btn-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.ui-btn { border: none; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; transition: background 0.2s, transform 0.1s; background: #e2e8f0; color: #334155; }
+.ui-btn:hover { transform: translateY(-1px); background: #cbd5e1; }
+.timeline-box { border-top: 1px solid #e2e8f0; padding-top: 10px; font-size: 12px; }
+.timeline-box input { width: 100%; margin-top: 6px; accent-color: #2b83ba; cursor: pointer; }
+
+/* --- Modo Oscuro --- */
+[data-theme="dark"] .ui-panel { background: rgba(30, 41, 59, 0.95); color: #f8fafc; }
+[data-theme="dark"] .panel-header { color: #f1f5f9; }
+[data-theme="dark"] .stat-card { background: #1e293b; }
+[data-theme="dark"] .stat-val { color: #38bdf8; }
+[data-theme="dark"] .ui-btn { background: #334155; color: #f1f5f9; }
+[data-theme="dark"] .ui-btn:hover { background: #475569; }
+[data-theme="dark"] .sidebar-content { background-color: #1e293b !important; color: #f8fafc !important; }
+[data-theme="dark"] .sidebar-pane h1, [data-theme="dark"] .sidebar-pane h3 { color: #38bdf8 !important; }
+[data-theme="dark"] .sidebar-tabs { background-color: #0f172a !important; }
+[data-theme="dark"] .sidebar-tabs > ul > li > a { color: #f1f5f9 !important; }
+
+/* --- Tooltips Modernos --- */
+.modern-tooltip { background: #1e293b !important; color: #ffffff !important; border: none !important; border-radius: 6px !important; padding: 6px 10px !important; font-weight: bold !important; box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important; font-size: 11px; }
+.modern-tooltip::before { border-top-color: #1e293b !important; }
+
+/* --- Animación de Entrada de Marcadores --- */
+.marker-entry-animation { animation: markerDrop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+@keyframes markerDrop { 0% { transform: scale(0) translateY(-30px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
+.custom-animated-pulse { border-radius: 50%; box-shadow: 0 0 0 0 rgba(43, 131, 186, 0.7); transition: all 0.3s; }
+
+/* --- Trayectoria Animada --- */
+.animated-trajectory { stroke-dasharray: 8, 8; animation: dashMovement 20s linear infinite; }
+@keyframes dashMovement { to { stroke-dashoffset: -1000; } }
+
+.popup-chart-container { width: 240px; height: 130px; margin-top: 8px; }
+
+
+
+
+/* ==================================================== */
+/* OPTIMIZACIÓN RESPONSIVE PARA EL GEOCV (MÓVILES)      */
+/* ==================================================== */
+@media (max-width: 768px) {
+    /* 1. Forzar a que la barra lateral ocupe casi todo el ancho en móviles */
+    .sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .sidebar-content {
+        font-size: 14px !important; /* Texto un pelo más grande para lectura táctil */
+    }
+
+    /* 2. Ajustar los contenedores de los gráficos para que no se corten */
+    .sidebar-pane canvas {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 180px !important; /* Reduce la altura en pantallas chicas */
+    }
+
+    /* 3. Optimizar la tarjeta de contacto para que no se apriete */
+    #profile div[style*="display: flex"] {
+        flex-direction: column !important; /* Pone el icono arriba y el texto abajo */
+        align-items: flex-start !important;
+        padding: 12px !important;
+    }
+
+    #profile div[style*="min-width: 40px"] {
+        margin-bottom: 6px !important;
+        text-align: left !important;
+    }
+
+    /* 4. Hacer que la leyenda de empresas sea más cómoda de leer */
+    #leyenda-sidebar td {
+        padding: 8px 4px !important;
+        font-size: 12px !important;
+    }
+}
