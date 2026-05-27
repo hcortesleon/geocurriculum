@@ -1,6 +1,6 @@
 // --- Inicialización del Mapa ---
 
-var map = L.map('map', { zoomControl:true, maxZoom:28, minZoom:1 }).setView([-33.6257, -70.5826], 14);
+var map = L.map('map', { zoomControl:true, maxZoom:28, minZoom:1 }).setView([-28.285, -65.962], 6);
 var hash = new L.Hash(map);
 map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; ');
 
