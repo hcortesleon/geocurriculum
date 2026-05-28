@@ -1,5 +1,5 @@
 /* ==================================================== */
-/* 1. ESTILOS BASE Y MAPA (ORIGINALES QGIS2WEB)         */
+/* 1. ESTILOS BASE Y MAPA                               */
 /* ==================================================== */
 body, html { padding: 0; margin: 0; width: 100%; height: 100%; font-family: Arial, Helvetica, sans-serif; }
 #map { background-color: #ffffff; width: 100%; height: 100%; }
@@ -14,7 +14,7 @@ li:last-child { border-bottom: none; }
 p { padding: 9px; border-bottom: 1px solid #ddd; }
 
 /* ==================================================== */
-/* 2. ESTILOS DE LEAFLET Y POPUPS                       */
+/* 2. ESTILOS DE LEAFLET Y POPUPS REALES                */
 /* ==================================================== */
 .leaflet-popup-content-wrapper { background-color: #333; color: #fff; border-radius: 8px; padding: 10px; }
 .leaflet-popup-content { margin: 0; font-size: 12px; line-height: 2; text-align: left; }
@@ -85,11 +85,39 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
 .popup-chart-container { width: 240px; height: 130px; margin-top: 8px; }
 
 /* ==================================================== */
-/* 5. RESPONSIVE DEFINITIVO (MÓVILES)                   */
+/* 5. CORRECCIÓN DEL "POPUP" DE CAPAS (TODAS LAS PANTALLAS) */
+/* ==================================================== */
+/* Al estar fuera de @media, esto forzará el color negro en PC y celulares */
+.leaflet-control-layers,
+.leaflet-control-layers-expanded,
+.leaflet-control-layers-expanded * {
+    color: #000000 !important; 
+    text-shadow: none !important;
+    opacity: 1 !important;
+}
+.leaflet-control-layers-expanded {
+    background: #ffffff !important;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 10px 15px !important;
+}
+.leaflet-layerstree-name,
+.leaflet-layerstree-header-name {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    margin-left: 6px !important;
+    vertical-align: middle !important;
+}
+.leaflet-control-layers-separator {
+    border-top: 1px solid #cbd5e1 !important;
+    margin: 10px 0 !important;
+}
+
+/* ==================================================== */
+/* 6. RESPONSIVO DEFINITIVO (SOLO MÓVILES)              */
 /* ==================================================== */
 @media (max-width: 768px) {
     
-    /* Título/Logo compacto y semitransparente */
     #titulo, .titulo {
         display: block !important;
         position: absolute !important;
@@ -111,29 +139,20 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
         color: #000000 !important;
     }
 
-    /* Control de Capas Leaflet (Forzado a visible y sobre todo) */
     .leaflet-top.leaflet-right {
         top: 10px !important;
         right: 10px !important;
         z-index: 99999 !important;
     }
     .leaflet-control-layers-expanded {
-        background: rgba(255, 255, 255, 0.95) !important;
-        color: #000000 !important;
         max-width: 220px !important;
         max-height: 200px !important;
         overflow-y: auto !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
-        padding: 12px !important;
     }
     .leaflet-control-layers-expanded label {
         font-size: 12px !important;
         margin-bottom: 5px !important;
         display: block !important;
-    }
-    .leaflet-control-layers span {
-        color: #000000 !important;
     }
     .leaflet-control-layers {
         display: block !important;
@@ -148,7 +167,6 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
         background-size: 24px 24px !important;
     }
 
-    /* Panel de Trayectoria (Abajo izquierda) */
     .ui-floating-container {
         position: absolute !important;
         top: auto !important;
@@ -180,7 +198,6 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
     .ui-btn { flex: 1 !important; font-size: 9px !important; padding: 5px 2px !important; }
     .timeline-box { padding-top: 4px !important; font-size: 10px !important; }
 
-    /* Sidebar modo completo */
     .sidebar:not(.collapsed) {
         width: 100% !important;
         max-width: 100% !important;
@@ -189,10 +206,6 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
     }
     .sidebar-content { font-size: 13px !important; }
     
-    /* Refuerzo oscuro en móvil */
-    [data-theme="dark"] .ui-panel { background: rgba(30, 41, 59, 0.80) !important; }
-
-    /* Gráficos y Perfil */
     .sidebar-pane canvas { width: 100% !important; height: auto !important; max-height: 160px !important; }
     #profile div[style*="display: flex"], #profile div[style*="display:flex"] {
         flex-direction: column !important;
@@ -200,46 +213,4 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
         padding: 10px !important;
     }
     #profile div[style*="min-width: 40px"] { margin-bottom: 6px !important; }
-}
-
-/* ==================================================== */
-/* 6. CORRECCIÓN DEFINITIVA DEL CONTROL DE CAPAS        */
-/* ==================================================== */
-
-/* Regla "nuclear": Forzar color a CUALQUIER elemento dentro del panel de capas */
-.leaflet-control-layers-expanded,
-.leaflet-control-layers-expanded * {
-    color: #1e293b !important;       /* Gris muy oscuro, casi negro */
-    text-shadow: none !important;    /* Anular cualquier sombra blanca que lo oculte */
-    opacity: 1 !important;           /* Forzar opacidad completa */
-}
-
-/* Fondo blanco sólido para garantizar el máximo contraste */
-.leaflet-control-layers-expanded {
-    background: #ffffff !important;
-    border: 2px solid rgba(0, 0, 0, 0.2) !important;
-    border-radius: 8px !important;
-    padding: 10px 15px !important;
-}
-
-/* Ajuste de tamaño de letra y alineación sin romper la estructura del plugin Tree */
-.leaflet-layerstree-name,
-.leaflet-layerstree-header-name {
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    margin-left: 6px !important;
-    vertical-align: middle !important;
-}
-
-/* Asegurar que las etiquetas se muestren bien y con espacio para hacer clic */
-.leaflet-control-layers-expanded label {
-    display: block !important;       /* Volvemos a block para no aplastar los checkboxes */
-    margin-bottom: 8px !important;
-    cursor: pointer !important;
-}
-
-/* Limpieza de la línea separadora */
-.leaflet-control-layers-separator {
-    border-top: 1px solid #cbd5e1 !important;
-    margin: 10px 0 !important;
 }
