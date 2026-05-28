@@ -84,27 +84,55 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
 .popup-chart-container { width: 240px; height: 130px; margin-top: 8px; }
 
 /* ==================================================== */
-/* OPTIMIZACIÓN RESPONSIVE (PROPUESTA INFERIOR IZQUIERDA)*/
+/* OPTIMIZACIÓN RESPONSIVE DEFINITIVA (MÓVIL)           */
 /* ==================================================== */
 @media (max-width: 768px) {
     
-    /* 1. LOGO / TÍTULO SUPERIOR: Más compacto, pequeño y semitransparente */
-    .titulo {
-        display: block !important;      /* Asegura que sea visible si antes se ocultó */
+    /* 1. LOGO / TÍTULO SUPERIOR (CORREGIDO PARA EL ID #titulo) */
+    #titulo, .titulo {
+        display: block !important;
         position: absolute !important;
         top: 8px !important;
-        left: 55px !important;         /* Se desplaza para no chocar con el botón del sidebar */
-        font-size: 11px !important;     /* Letra más pequeña */
-        opacity: 0.65 !important;       /* Transparencia sutil */
-        max-width: 160px !important;
+        left: 55px !important;         /* Espacio para no tapar el botón del sidebar */
+        background: rgba(255, 255, 255, 0.5) !important; /* Fondo semitransparente */
+        padding: 4px 8px !important;
+        border-radius: 6px !important;
+        max-width: 150px !important;   /* Lo hacemos bien angosto */
+        opacity: 0.6 !important;       /* Transparencia general del 40% */
         z-index: 9999 !important;
+        box-shadow: none !important;
     }
-    .titulo h1 {
-        font-size: 12px !important;
+    /* Achicamos el texto del h1 dentro del título */
+    #titulo h1, .titulo h1, .title-map {
+        font-size: 11px !important;
         margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.2 !important;
+        color: #000000 !important;
     }
 
-    /* 2. BARRA LATERAL (SIDEBAR): Mantiene su comportamiento original */
+    /* 2. CONTROL DE CAPAS NATIVO DE LEAFLET (FORZADO PARA MÓVIL) */
+    .leaflet-top.leaflet-right {
+        top: 10px !important;
+        right: 10px !important;
+        z-index: 1200 !important;      /* Asegura que flote por encima de todo */
+    }
+    /* Forzamos a que el botón de capas se muestre y sea más grande en celular */
+    .leaflet-control-layers {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        border: 2px solid rgba(0,0,0,0.2) !important;
+        background-clip: padding-box;
+    }
+    /* Hacemos el icono un poco más grande para el pulgar */
+    .leaflet-control-layers-toggle {
+        width: 40px !important;
+        height: 40px !important;
+        background-size: 24px 24px !important;
+    }
+
+    /* 3. BARRA LATERAL (SIDEBAR) */
     .sidebar:not(.collapsed) {
         width: 100% !important;
         max-width: 100% !important;
@@ -113,73 +141,52 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
     }
     .sidebar-content { font-size: 13px !important; }
 
-    /* 3. CONTROL DE TRAYECTORIA: Abajo a la izquierda, compacto y transparente */
+    /* 4. CONTROL DE TRAYECTORIA (ABAJO A LA IZQUIERDA COMPACTO) */
     .ui-floating-container {
         position: absolute !important;
         top: auto !important;
         right: auto !important;
         bottom: 15px !important;       /* Separación del borde inferior */
-        left: 50px !important;         /* Al lado exacto de la barra de pestañas del sidebar (~40px) */
-        transform: none !important;    /* Desactivamos el centrado horizontal previo */
-        width: 230px !important;       /* Ancho bastante reducido y compacto */
+        left: 50px !important;         /* Al lado exacto de la barra del sidebar colapsado */
+        transform: none !important;
+        width: 230px !important;       /* Ancho compacto */
         margin: 0 !important;
-        z-index: 1050 !important;       /* Flota cómodamente sobre el mapa */
+        z-index: 1050 !important;
     }
     
-    /* Hacemos el fondo del panel un 20% transparente para ver el mapa por detrás */
+    /* Fondo con transparencia y efecto desenfoque moderno */
     .ui-panel { 
         background: rgba(255, 255, 255, 0.80) !important; 
-        backdrop-filter: blur(4px) !important; /* Efecto esmerilado moderno */
+        backdrop-filter: blur(4px) !important; 
         padding: 8px !important; 
         border-radius: 8px !important;
     }
     
-    .panel-header { 
-        font-size: 11px !important; 
-        margin-bottom: 4px !important; 
-        text-align: left !important;
-    }
-
-    /* Tarjetas de estadísticas mini */
+    .panel-header { font-size: 11px !important; margin-bottom: 4px !important; text-align: left !important; }
     .stats-grid { gap: 6px !important; margin-bottom: 6px !important; }
     .stat-card { padding: 4px !important; border-radius: 6px !important; }
     .stat-val { font-size: 14px !important; }
     .stat-lbl { font-size: 8px !important; }
 
-    /* Botones horizontales compactos */
+    /* Botones horizontales */
     .btn-group {
         flex-direction: row !important;
         justify-content: space-between !important;
         gap: 4px !important;
         margin-bottom: 6px !important;
     }
-    .ui-btn { 
-        flex: 1 !important; 
-        font-size: 9px !important; 
-        padding: 5px 2px !important; 
-    }
-    
-    /* Slider/Línea de tiempo compacta */
+    .ui-btn { flex: 1 !important; font-size: 9px !important; padding: 5px 2px !important; }
     .timeline-box { padding-top: 4px !important; font-size: 10px !important; }
 
-    /* REFUERZO DE MODO OSCURO SEMITRANSPARENTE */
-    [data-theme="dark"] .ui-panel { 
-        background: rgba(30, 41, 59, 0.80) !important; 
-    }
+    /* REFUERZO MODO OSCURO EN MÓVIL */
+    [data-theme="dark"] .ui-panel { background: rgba(30, 41, 59, 0.80) !important; }
 
-    /* 4. Gráficos y Flexbox del Sidebar */
-    .sidebar-pane canvas {
-        width: 100% !important;
-        height: auto !important;
-        max-height: 160px !important; 
-    }
-    #profile div[style*="display: flex"],
-    #profile div[style*="display:flex"] {
+    /* 5. Ajustes de Canvas y Perfil */
+    .sidebar-pane canvas { width: 100% !important; height: auto !important; max-height: 160px !important; }
+    #profile div[style*="display: flex"], #profile div[style*="display:flex"] {
         flex-direction: column !important;
         align-items: flex-start !important;
         padding: 10px !important;
     }
-    #profile div[style*="min-width: 40px"] {
-        margin-bottom: 6px !important;
-    }
+    #profile div[style*="min-width: 40px"] { margin-bottom: 6px !important; }
 }
