@@ -76,98 +76,67 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
 @keyframes dashMovement { to { stroke-dashoffset: -1000; } }
 
 .popup-chart-container { width: 240px; height: 130px; margin-top: 8px; }
+
 /* ==================================================== */
-/* OPTIMIZACIÓN RESPONSIVE CORREGIDA                     */
+/* OPTIMIZACIÓN RESPONSIVE (CORRECCIÓN DEFINITIVA)      */
 /* ==================================================== */
 
 @media (max-width: 768px) {
-    /* Bajamos un poco el título para que no se solape con el panel superior */
-    .titulo { 
-        left: 10px; 
-        width: 90%; 
-        font-size: 1.1em; 
-        top: 75px; 
-        z-index: 1000;
-    } 
-    
-    th, td { min-width: 50px; }
-    td img { max-height: 40vw; max-width: 40vw; }
-    .abstractUncollapsed { max-width: 90%; }
+    /* Ocultar el título grande en móvil para no gastar pantalla */
+    .titulo { display: none !important; }
 
-    /* 1. Ajuste de la Barra Lateral */
-    /* En vez de cortarla al 50% de altura (que rompe el JS), hacemos que al abrirse 
-       ocupe el 100% del alto de forma limpia sobre el mapa */
+    /* 1. Barra Lateral (Sidebar) */
     .sidebar {
         width: 100% !important;
         max-width: 100% !important;
-        height: 100% !important;
+        height: 100% !important; /* CORREGIDO: Evita que se corte a la mitad */
+        z-index: 2000 !important; /* Asegura que cubra los controles al abrirse */
     }
-    .sidebar-content {
-        font-size: 14px !important;
-    }
+    
+    .sidebar-content { font-size: 13px !important; }
 
-    /* 2. Ajustar los contenedores de los gráficos para que no se desborden */
+    /* 2. Control Flotante de Trayectoria (El arreglo crucial) */
+    .ui-floating-container {
+        position: absolute !important; /* ESTO EVITA QUE ROMPA LA PANTALLA */
+        bottom: 25px !important;       /* Lo movemos abajo para despejar el mapa */
+        top: auto !important;          /* Anulamos la posición de arriba */
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Lo centra perfecto */
+        width: 90% !important;
+        margin: 0 !important;
+        z-index: 1000 !important;      /* Queda debajo del menú lateral al abrirse */
+    }
+    
+    /* Achicamos el panel flotante para que sea elegante en móvil */
+    .ui-panel { padding: 10px !important; }
+    .panel-header { font-size: 12px !important; margin-bottom: 5px !important; text-align: center; }
+
+    /* Ponemos los botones en una sola fila horizontal para ahorrar espacio */
+    .btn-group {
+        flex-direction: row !important;
+        justify-content: space-between;
+        gap: 5px;
+    }
+    .ui-btn { flex: 1; font-size: 11px !important; padding: 6px !important; }
+    
+    /* Slider más compacto */
+    .timeline-box { padding-top: 5px !important; font-size: 11px !important; }
+
+    /* 3. Gráficos del Menú Lateral */
     .sidebar-pane canvas {
         width: 100% !important;
         height: auto !important;
-        max-height: 160px !important;
-    }
-
-    /* 3. Reubicación de la Interfaz Flotante (¡EL ARREGLO CRUCIAL!) */
-    /* Mantenemos 'position: absolute' para que NO empuje el mapa hacia abajo.
-       Hacemos que el panel se estire a lo ancho de la pantalla con márgenes limpios. */
-    .ui-floating-container {
-        position: absolute; 
-        top: 10px;
-        right: 10px;
-        left: 10px;
-        width: auto; /* Se adapta dinámicamente al ancho de la pantalla */
-        margin: 0;
-        z-index: 1100; /* Asegura estar por encima de los controles nativos de Leaflet */
+        max-height: 160px !important; 
     }
     
-    .ui-panel {
-        padding: 10px; /* Reducimos el padding para ahorrar pantalla */
-    }
-    
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-    }
-    
-    .btn-group {
-        flex-direction: row; /* Ponemos los botones de lado a lado para no gastar espacio vertical */
-        flex-wrap: wrap;
-    }
-    
-    .ui-btn {
-        flex: 1;
-        font-size: 11px;
-        padding: 6px;
-    }
-
-    /* 4. Optimizar las tarjetas de contacto en el perfil */
-    #profile div[style*="display: flex"], 
+    /* 4. Tarjetas de Contacto en el Perfil */
+    #profile div[style*="display: flex"],
     #profile div[style*="display:flex"] {
-        flex-direction: row !important; /* Mantenemos el flujo horizontal o ajustamos */
-        padding: 8px !important;
-        margin-bottom: 10px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 10px !important;
     }
-}
-
-@media (max-width: 480px) {
-    .titulo { 
-        display: none; /* En pantallas muy pequeñas (móviles verticales), es mejor ocultar el título dinámico para liberar espacio */
-    }
-    
-    .ui-floating-container {
-        top: 5px;
-        left: 5px;
-        right: 5px;
-    }
-    
-    .stat-val {
-        font-size: 15px;
+    #profile div[style*="min-width: 40px"] {
+        margin-bottom: 6px !important;
     }
 }
