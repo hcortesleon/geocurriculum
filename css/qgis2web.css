@@ -1,3 +1,30 @@
+/* Forzar color y visibilidad a cualquier elemento dentro del panel de capas */
+.leaflet-control-layers-expanded,
+.leaflet-control-layers-expanded *,
+.leaflet-layerstree-header,
+.leaflet-layerstree-header-name,
+.leaflet-layerstree-name,
+.leaflet-layerstree-children,
+.leaflet-control-layers label {
+    color: #1e293b !important; /* Gris oscuro definido */
+    background-color: transparent !important; /* Evitar fondos blancos heredados */
+    text-shadow: none !important;
+    opacity: 1 !important;
+    font-weight: 500 !important;
+}
+
+/* Forzar fondo blanco solo al contenedor principal */
+.leaflet-control-layers-expanded {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+/* Asegurar que las cajas de selección (checkboxes) sean visibles */
+.leaflet-control-layers-selector {
+    display: inline-block !important;
+    margin-right: 8px !important;
+}
+
 /* ==================================================== */
 /* 1. ESTILOS BASE Y MAPA                               */
 /* ==================================================== */
