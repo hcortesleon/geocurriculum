@@ -41,7 +41,7 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
 /* ==================================================== */
 /* INTERFAZ FLOTANTE MODERNA (ESCRITORIO)               */
 /* ==================================================== */
-.ui-floating-container { position: absolute; top: 15px; right: 140px; z-index: 1000; width: 280px; font-family: 'Arial', sans-serif; }
+.ui-floating-container { position: absolute; top: 15px; right: 120px; z-index: 1000; width: 280px; font-family: 'Arial', sans-serif; }
 .ui-panel { background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); backdrop-filter: blur(4px); transition: all 0.3s ease; }
 .panel-header { font-weight: bold; font-size: 14px; margin-bottom: 10px; color: #333; text-transform: uppercase; letter-spacing: 0.5px;}
 .stats-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
