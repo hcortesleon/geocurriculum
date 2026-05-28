@@ -103,15 +103,20 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
     /* 2. Control Flotante de Trayectoria - CORREGIDO: Reseteo y empuje al sur */
     .ui-floating-container {
         position: absolute !important;
-        top: auto !important;
-        right: auto !important;
-        bottom: 25px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 90% !important;
+        top: 10px !important;
+        right: 10px !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 250px !important;
         margin: 0 !important;
-        z-index: 1500 !important;
+        z-index: 1100 !important;
     }
+
+    /* Hacemos los textos ligeramente más pequeños para ahorrar espacio */
+    .stat-val { font-size: 15px !important; }
+    .stat-lbl { font-size: 9px !important; }
+    .ui-btn { font-size: 10px !important; padding: 5px !important; }
     
     /* Achicamos el panel flotante */
     .ui-panel { padding: 10px !important; }
