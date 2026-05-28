@@ -202,49 +202,44 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
     #profile div[style*="min-width: 40px"] { margin-bottom: 6px !important; }
 }
 
-
 /* ==================================================== */
-/* 6. CORRECCIÓN Y LIMPIEZA DEL CONTROL DE CAPAS        */
+/* 6. CORRECCIÓN DEFINITIVA DEL CONTROL DE CAPAS        */
 /* ==================================================== */
 
-/* Forzar el color del texto para el plugin Tree y Leaflet nativo */
+/* Regla "nuclear": Forzar color a CUALQUIER elemento dentro del panel de capas */
 .leaflet-control-layers-expanded,
-.leaflet-control-layers-expanded label,
-.leaflet-control-layers-expanded span,
-.leaflet-layerstree-header-name,
-.leaflet-layerstree-header label {
-    color: #334155 !important;       /* Gris oscuro elegante y siempre visible */
-    font-size: 13px !important;
-    font-weight: 500 !important;
-    text-shadow: none !important;    /* Quita cualquier sombra sucia del texto */
+.leaflet-control-layers-expanded * {
+    color: #1e293b !important;       /* Gris muy oscuro, casi negro */
+    text-shadow: none !important;    /* Anular cualquier sombra blanca que lo oculte */
+    opacity: 1 !important;           /* Forzar opacidad completa */
 }
 
-/* Alinear perfectamente el checkbox con el texto */
-.leaflet-layerstree-header label,
-.leaflet-control-layers-expanded label {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;             /* Separación limpia entre cuadro y texto */
-    margin-bottom: 6px !important;
-    cursor: pointer;
-}
-
-/* Quitar márgenes raros de las carpetas del árbol de capas */
-.leaflet-layerstree-children {
-    margin-left: 15px !important;
-    padding-left: 0 !important;
-}
-
-/* Fondo del panel nítido y moderno */
+/* Fondo blanco sólido para garantizar el máximo contraste */
 .leaflet-control-layers-expanded {
-    background: rgba(255, 255, 255, 0.98) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background: #ffffff !important;
+    border: 2px solid rgba(0, 0, 0, 0.2) !important;
     border-radius: 8px !important;
-    padding: 12px 15px !important;
+    padding: 10px 15px !important;
 }
 
-/* Línea separadora sutil entre mapas base y capas */
+/* Ajuste de tamaño de letra y alineación sin romper la estructura del plugin Tree */
+.leaflet-layerstree-name,
+.leaflet-layerstree-header-name {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    margin-left: 6px !important;
+    vertical-align: middle !important;
+}
+
+/* Asegurar que las etiquetas se muestren bien y con espacio para hacer clic */
+.leaflet-control-layers-expanded label {
+    display: block !important;       /* Volvemos a block para no aplastar los checkboxes */
+    margin-bottom: 8px !important;
+    cursor: pointer !important;
+}
+
+/* Limpieza de la línea separadora */
 .leaflet-control-layers-separator {
-    border-top: 1px solid #e2e8f0 !important;
+    border-top: 1px solid #cbd5e1 !important;
     margin: 10px 0 !important;
 }
