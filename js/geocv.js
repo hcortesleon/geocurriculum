@@ -363,6 +363,19 @@ logo.onAdd = function(map){
 logo.addTo(map);
 
 var sidebar = L.control.sidebar('sidebar').addTo(map);
+
+sidebar.on('content', function(e) {
+    setTimeout(function() {
+        map.invalidateSize();
+    }, 300);
+});
+
+sidebar.on('closing', function() {
+    setTimeout(function() {
+        map.invalidateSize();
+    }, 300);
+});
+
 filtrarYRenderizarCronologia(2016);
 
 // ====================================================
