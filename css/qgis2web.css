@@ -76,75 +76,98 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
 @keyframes dashMovement { to { stroke-dashoffset: -1000; } }
 
 .popup-chart-container { width: 240px; height: 130px; margin-top: 8px; }
-
 /* ==================================================== */
-/* OPTIMIZACIÓN RESPONSIVE                              */
+/* OPTIMIZACIÓN RESPONSIVE CORREGIDA                     */
 /* ==================================================== */
 
 @media (max-width: 768px) {
-    .titulo { left: 10px; width: 90%; font-size: 1.2em; top: 50px; } /* Se baja el título para que no choque con controles */
+    /* Bajamos un poco el título para que no se solape con el panel superior */
+    .titulo { 
+        left: 10px; 
+        width: 90%; 
+        font-size: 1.1em; 
+        top: 75px; 
+        z-index: 1000;
+    } 
+    
     th, td { min-width: 50px; }
     td img { max-height: 40vw; max-width: 40vw; }
     .abstractUncollapsed { max-width: 90%; }
 
-    /* 1. Modificaciones de la Barra Lateral */
+    /* 1. Ajuste de la Barra Lateral */
+    /* En vez de cortarla al 50% de altura (que rompe el JS), hacemos que al abrirse 
+       ocupe el 100% del alto de forma limpia sobre el mapa */
     .sidebar {
         width: 100% !important;
         max-width: 100% !important;
-        height: 50% !important; /* Si es una barra lateral colapsable tipo leaflet-sidebar, a veces conviene que ocupe la mitad inferior */
+        height: 100% !important;
     }
     .sidebar-content {
         font-size: 14px !important;
     }
 
-    /* 2. Ajustar los contenedores de los gráficos */
+    /* 2. Ajustar los contenedores de los gráficos para que no se desborden */
     .sidebar-pane canvas {
         width: 100% !important;
         height: auto !important;
-        max-height: 180px !important;
+        max-height: 160px !important;
     }
 
-    /* 3. Reubicación de la Interfaz Flotante en Móviles */
+    /* 3. Reubicación de la Interfaz Flotante (¡EL ARREGLO CRUCIAL!) */
+    /* Mantenemos 'position: absolute' para que NO empuje el mapa hacia abajo.
+       Hacemos que el panel se estire a lo ancho de la pantalla con márgenes limpios. */
     .ui-floating-container {
-        position: relative;
-        top: 0;
-        right: 0;
-        width: calc(100% - 20px);
-        margin: 10px auto;
-        z-index: 1001;
+        position: absolute; 
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto; /* Se adapta dinámicamente al ancho de la pantalla */
+        margin: 0;
+        z-index: 1100; /* Asegura estar por encima de los controles nativos de Leaflet */
     }
+    
+    .ui-panel {
+        padding: 10px; /* Reducimos el padding para ahorrar pantalla */
+    }
+    
     .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    
+    .btn-group {
+        flex-direction: row; /* Ponemos los botones de lado a lado para no gastar espacio vertical */
+        flex-wrap: wrap;
+    }
+    
+    .ui-btn {
+        flex: 1;
+        font-size: 11px;
+        padding: 6px;
     }
 
-    /* 4. Optimizar la tarjeta de contacto */
+    /* 4. Optimizar las tarjetas de contacto en el perfil */
     #profile div[style*="display: flex"], 
     #profile div[style*="display:flex"] {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        padding: 12px !important;
-    }
-    #profile div[style*="min-width: 40px"] {
-        margin-bottom: 6px !important;
-        text-align: left !important;
-    }
-
-    /* 5. Leyenda de empresas */
-    #leyenda-sidebar td {
-        padding: 8px 4px !important;
-        font-size: 12px !important;
+        flex-direction: row !important; /* Mantenemos el flujo horizontal o ajustamos */
+        padding: 8px !important;
+        margin-bottom: 10px !important;
     }
 }
 
 @media (max-width: 480px) {
-    .titulo { left: 5px; width: 95%; font-size: 1em; }
-    th, td { min-width: 40px; }
-    td img { max-height: 30vw; max-width: 30vw; }
-    .abstractUncollapsed { max-width: 95%; }
+    .titulo { 
+        display: none; /* En pantallas muy pequeñas (móviles verticales), es mejor ocultar el título dinámico para liberar espacio */
+    }
     
     .ui-floating-container {
-        width: calc(100% - 10px);
-        margin: 5px;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+    }
+    
+    .stat-val {
+        font-size: 15px;
     }
 }
