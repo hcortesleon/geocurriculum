@@ -78,40 +78,40 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
 .popup-chart-container { width: 240px; height: 130px; margin-top: 8px; }
 
 /* ==================================================== */
-/* OPTIMIZACIÓN RESPONSIVE (CORRECCIÓN DEFINITIVA)      */
+/* OPTIMIZACION RESPONSIVE (CORRECCION DEFINITIVA)      */
 /* ==================================================== */
 
 @media (max-width: 768px) {
-    /* Ocultar el título grande en móvil para no gastar pantalla */
+    /* Ocultar el titulo grande en movil para no gastar pantalla */
     .titulo { display: none !important; }
 
     /* 1. Barra Lateral (Sidebar) */
     .sidebar {
         width: 100% !important;
         max-width: 100% !important;
-        height: 100% !important; /* CORREGIDO: Evita que se corte a la mitad */
-        z-index: 2000 !important; /* Asegura que cubra los controles al abrirse */
+        height: 100% !important;
+        z-index: 2000 !important;
     }
     
     .sidebar-content { font-size: 13px !important; }
 
-    /* 2. Control Flotante de Trayectoria (El arreglo crucial) */
+    /* 2. Control Flotante de Trayectoria */
     .ui-floating-container {
-        position: absolute !important; /* ESTO EVITA QUE ROMPA LA PANTALLA */
-        bottom: 25px !important;       /* Lo movemos abajo para despejar el mapa */
-        top: auto !important;          /* Anulamos la posición de arriba */
+        position: absolute !important;
+        bottom: 25px !important;
+        top: auto !important;
         left: 50% !important;
-        transform: translateX(-50%) !important; /* Lo centra perfecto */
+        transform: translateX(-50%) !important;
         width: 90% !important;
         margin: 0 !important;
-        z-index: 1000 !important;      /* Queda debajo del menú lateral al abrirse */
+        z-index: 1000 !important;
     }
     
-    /* Achicamos el panel flotante para que sea elegante en móvil */
+    /* Achicamos el panel flotante */
     .ui-panel { padding: 10px !important; }
     .panel-header { font-size: 12px !important; margin-bottom: 5px !important; text-align: center; }
 
-    /* Ponemos los botones en una sola fila horizontal para ahorrar espacio */
+    /* Botones horizontales */
     .btn-group {
         flex-direction: row !important;
         justify-content: space-between;
@@ -119,10 +119,10 @@ p { padding: 9px; border-bottom: 1px solid #ddd; }
     }
     .ui-btn { flex: 1; font-size: 11px !important; padding: 6px !important; }
     
-    /* Slider más compacto */
+    /* Slider compacto */
     .timeline-box { padding-top: 5px !important; font-size: 11px !important; }
 
-    /* 3. Gráficos del Menú Lateral */
+    /* 3. Graficos del Menu Lateral */
     .sidebar-pane canvas {
         width: 100% !important;
         height: auto !important;
