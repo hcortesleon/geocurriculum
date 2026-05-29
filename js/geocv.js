@@ -143,22 +143,19 @@ registrosFiltrados.sort(function(a, b) {
         
 		
 		var popupId = `chart-popup-${index}`;
-        var popupContent = `
-            <div style="min-width:240px; color:#333;">
-                <h4 style="margin:0 0 6px 0; color:#2b83ba; line-height:1.2;">
-                    ${feature.properties['Empresa:']} <br>
-                    <span style="font-size:12px; color:#555; font-weight:normal;">${feature.properties['Cargo:']}</span>
-                </h4>
-                <b>Periodo:</b> ${feature.properties['Año:']}<br>
-                <p style="margin:6px 0; font-size:11px; max-height:80px; overflow-y:auto; line-height:1.3; border:none;">
-                    ${feature.properties['Descripción:'].replace(/\n/g, '<br>')}
-                </p>
-                <div class="popup-chart-container"><canvas id="${popupId}"></canvas></div>
-            </div>
-        
-			
-			
-        `;
+		var popupContent = `
+    		<div style="min-width:240px;">
+        		<h4 style="margin:0 0 6px 0; color:#4db8ff; line-height:1.2;">
+           		 ${feature.properties['Empresa:']} <br>
+            		<span style="font-size:12px; color:#dddddd; font-weight:normal;">${feature.properties['Cargo:']}</span>
+        	</h4>
+       		 <b style="color:#fff;">Periodo:</b> <span style="color:#fff;">${feature.properties['Año:']}</span><br>
+        	 <p style="margin:6px 0; font-size:11px; max-height:80px; overflow-y:auto; line-height:1.3; border:none; color:#f0f0f0;">
+            ${feature.properties['Descripción:'].replace(/\n/g, '<br>')}
+        </p>
+        <div class="popup-chart-container"><canvas id="${popupId}"></canvas></div>
+    </div>
+`;
         marker.bindPopup(popupContent, { maxHeight: 320 });
 
         marker.on('popupopen', function() {
